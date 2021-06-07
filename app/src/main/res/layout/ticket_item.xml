@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/colorWhite"
+    app:cardCornerRadius="12dp"
+    android:layout_width="312dp"
+    android:layout_margin="15dp"
+    android:layout_height="121dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/title"
+            style="@style/TitleBlackTextStyle"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_below="@id/title"
+            style="@style/BodyBlackTextStyle"
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 дн 23 час 23 мин 5 сек"
+            />
+
+        <ImageView
+            android:id="@+id/imageTicket"
+            android:layout_below="@id/timer"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bought_ticket"
+            />
+
+        <TextView
+            android:id="@+id/ticketBoughtOrNot"
+            android:layout_toEndOf="@id/imageTicket"
+            android:layout_below="@id/timer"
+            android:paddingTop="10dp"
+            style="@style/BodyBlackTextStyle"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ticker_bought"
+            />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

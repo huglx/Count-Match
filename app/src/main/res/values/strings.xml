@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Count Match</string>
+    <!--greeting-->
+    <string name="greetings">Добро пожаловать!</string>
+    <string name="greetings_text">С нашим приложением вы можете ставить таймер с уведомлением на предстоящие события</string>
+    <string name="greetings_text_button">Понятно, продолжить</string>
+    <!--permission-->
+    <string name="permission">Разрешения</string>
+    <string name="permission_text">Все события автоматически будут добавлены в виджеты вашего устройства, список разрешений:</string>
+    <string name="permission1">- виджеты рабочего стола </string>
+    <string name="permission2">- календарь</string>
+    <string name="permission3">- пуш-уведомления</string>
+    <string name="permission4">- клавиатура</string>
+    <!--main-->
+    <string name="ticker_bought">билет куплен</string>
+    <string name="ticker_not_bought">билет не куплен</string>
+
+</resources>
