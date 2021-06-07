@@ -66,8 +66,9 @@
                 />
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
-            android:text="@string/greetings_text_button"
+            android:text="@string/permission_text_button"
             style="@style/ButtonStyle"
+            android:id="@+id/next"
             android:layout_marginBottom="40dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"

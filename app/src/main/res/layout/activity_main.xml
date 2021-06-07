@@ -8,7 +8,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            style="@style/Head6TextStyle"
+            android:text="@string/my_actions"
+            android:id="@+id/actions"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+        <com.google.android.material.button.MaterialButton
+            app:iconTint="@color/colorWhite"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            app:icon="@drawable/ic_settings_icon"
+            android:id="@+id/settings"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_item"
+        android:layout_below="@id/actions"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/ticket_item"
+        />
 
     </RelativeLayout>
 

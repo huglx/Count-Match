@@ -1,9 +1,11 @@
 package com.countutilmatch.countmatch.ui.splash
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.countutilmatch.countmatch.databinding.ActivityGreetingBinding
+import com.countutilmatch.countmatch.utils.IS_GREETING_PASSED
 
 class GreetingActivity : AppCompatActivity() {
 
@@ -13,8 +15,13 @@ class GreetingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBindings()
 
+
         bindings.next.setOnClickListener {
-            startActivity(Intent(this, PermissionActivity::class.java)) }
+            val sharedPref = this.getSharedPreferences(IS_GREETING_PASSED , Context.MODE_PRIVATE)
+            var editor = sharedPref.edit()
+            startActivity(Intent(this, PermissionActivity::class.java))
+            editor.putBoolean(IS_GREETING_PASSED, true).apply()
+        }
     }
 
     fun initBindings() {

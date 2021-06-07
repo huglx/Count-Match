@@ -11,8 +11,10 @@
     <string name="permission2">- календарь</string>
     <string name="permission3">- пуш-уведомления</string>
     <string name="permission4">- клавиатура</string>
+    <string name="permission_text_button">Подтвердить и продолжить</string>
     <!--main-->
     <string name="ticker_bought">билет куплен</string>
     <string name="ticker_not_bought">билет не куплен</string>
+    <string name="my_actions">Мои события</string>
 
 </resources>

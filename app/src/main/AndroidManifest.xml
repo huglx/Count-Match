@@ -12,13 +12,14 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.countutilmatch.countmatch.ui.splash.PermissionActivity"></activity>
         <activity android:name="com.countutilmatch.countmatch.ui.splash.GreetingActivity">
+        </activity>
+        <activity android:name="com.countutilmatch.countmatch.ui.main.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name="com.countutilmatch.countmatch.ui.main.MainActivity"></activity>
     </application>
 
 </manifest>
