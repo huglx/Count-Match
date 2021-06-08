@@ -16,5 +16,23 @@
     <string name="ticker_bought">билет куплен</string>
     <string name="ticker_not_bought">билет не куплен</string>
     <string name="my_actions">Мои события</string>
+    <string name="timer">%1$d дн. %2$d час. %3$d мин. %4$d сек.</string>
+    <!--adding-->
+    <string name="football_hint">Футбольный матч</string>
+    <string name="date_hint">дд-мм-гггг</string>
+    <string name="date_time_hint">чч-мм-сс</string>
+    <string name="add">Новое событие</string>
+    <string name="title_text">Название:</string>
+    <string name="date_text">Дата события:</string>
+    <string name="date_time_text">Время события:</string>
+    <string name="tickets_bought">Билеты уже куплены</string>
+    <string name="add_event">Создать событие</string>
+    <string name="invalid_date">Неверный формат даты</string>
+    <string name="invalid_date_time">Неверный формат времени</string>
+    <string name="date_inPast">Введена дата из прошлого</string>
+    <string name="added">Готово</string>
+    <string name="added2">Ваше событие создано успешно!</string>
+    <string name="add_more">Создать ещё одно событие</string>
+    <string name="go_main">Перейти к списку событий</string>
 
 </resources>

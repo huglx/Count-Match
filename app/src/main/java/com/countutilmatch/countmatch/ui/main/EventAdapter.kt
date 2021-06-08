@@ -1,39 +1,23 @@
-/*
- * Copyright 2018, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.countutilmatch.countmatch.ui.main
 
+import android.os.CountDownTimer
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.countutilmatch.countmatch.R
 import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.TicketItemBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import java.util.concurrent.TimeUnit
 
-class EventAdapter(private val events: List<Event>) :
+
+class EventAdapter(private val events: List<Event>, val clickListener: EventListener) :
         RecyclerView.Adapter<EventViewHolder>() {
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(events[position])
+        holder.bind(events[position], clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -50,24 +34,46 @@ class EventAdapter(private val events: List<Event>) :
     }
 }
 
-class EventViewHolder  constructor(private val binding: TicketItemBinding)
+class EventViewHolder constructor(private val binding: TicketItemBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind( item: Event) {
+        fun bind(item: Event, clickListener: EventListener) {
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy,HH-mm-ss")//"dd-MM-yyyy,HH-mm-ss"
+           // val date = item.endDate+","+item.endTime
+            val date = (item.endDate+","+item.endTime)
+            val text = date.format(formatter)
+            val parsedDate = LocalDateTime.parse(text, formatter)
+
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.SECOND, parsedDate.second)
+            calendar.set(Calendar.HOUR_OF_DAY, parsedDate.hour)
+            calendar.set(Calendar.MONTH,parsedDate.monthValue-1)
+            calendar.set(Calendar.MINUTE,parsedDate.minute)
+            calendar.set(Calendar.DAY_OF_MONTH, parsedDate.dayOfMonth)
+            calendar.set(Calendar.YEAR, parsedDate.year)
+
+            val timer = object: CountDownTimer(calendar.timeInMillis - System.currentTimeMillis(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val day = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
+                    val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished).toInt() % 24
+                    val minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished).toInt() % 60
+                    val seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished).toInt() % 60
+                    binding.timer.text = itemView.context.resources.getString(R.string.timer, day, hours, minutes, seconds)
+                }
+
+                override fun onFinish() {
+
+                }
+            }.start()
+
             binding.event = item
             binding.title.text = item.title
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
 
-
-/**
- * Callback for calculating the diff between two non-null items in a list.
- *
- * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
- * list that's been passed to `submitList`.
- */
-
-/*class SleepNightListener(val clickListener: (sleepId: Long) -> Unit) {
-    fun onClick(night: SleepNight) = clickListener(night.nightId)
-}*/
+class EventListener(val clickListener: (eventId: Long) -> Unit, val longClickListener: () -> Unit) {
+    fun onClick(event: Event) = clickListener(event.eventId)
+    fun onLongPress() = longClickListener()
+}

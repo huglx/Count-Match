@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.adding.ResultActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/added"
+            android:layout_marginBottom="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tick"
+            />
+        <TextView
+            android:id="@+id/added"
+            android:text="@string/added"
+            style="@style/Head6TextStyle"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/added2"
+            android:layout_below="@id/added"
+            android:text="@string/added2"
+            style="@style/TitleTextStyle"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/add_more"
+            style="@style/ButtonStyle"
+            android:id="@+id/addMore"
+            android:layout_marginTop="80dp"
+            android:layout_below="@id/added2"
+            android:layout_centerHorizontal="true"
+            android:layout_width="312dp"
+            android:layout_height="78dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/go_main"
+            android:textColor="@color/colorWhite"
+            app:strokeWidth="0dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/goMain"
+            android:layout_below="@id/addMore"
+            android:layout_centerHorizontal="true"
+            android:layout_width="312dp"
+            android:layout_height="78dp"/>
+    </RelativeLayout>
+
+</layout>

@@ -3,11 +3,14 @@ package com.countutilmatch.countmatch.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.ActivityMainBinding
+import com.countutilmatch.countmatch.ui.adding.AddingActivity
 import com.countutilmatch.countmatch.ui.base.BaseActivity
 import com.countutilmatch.countmatch.ui.splash.GreetingActivity
 import com.countutilmatch.countmatch.ui.splash.PermissionActivity
@@ -18,7 +21,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    lateinit var bindings: ActivityMainBinding
+    private lateinit var bindings: ActivityMainBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     @Inject
@@ -37,10 +40,16 @@ class MainActivity : BaseActivity() {
 
     override fun observeViewModel() {
         observe(viewModel.event,:: handleData)
+        observe(viewModel.longPressed,::longPressed)
     }
 
     private fun handleData(events: List<Event>) {
-        eventAdapter = EventAdapter(events)
+        eventAdapter = EventAdapter(events, EventListener(clickListener = {
+            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+        },longClickListener = {
+            Toast.makeText(this,"long", Toast.LENGTH_SHORT).show()
+        })
+        )
         bindings.listItem.adapter = eventAdapter
     }
 
@@ -52,14 +61,26 @@ class MainActivity : BaseActivity() {
         if (!sharedPref.getBoolean(IS_GREETING_PASSED, false)){
             startActivity(Intent(this, GreetingActivity::class.java))
         }
+        bindings.floatingActionButton.setOnClickListener {
+            startActivity(Intent(this, AddingActivity::class.java))
+        }
 
         setUp()
         viewModel.init()
     }
 
     private fun setUp() {
-
         val manager = LinearLayoutManager(this)
         bindings.listItem.layoutManager = manager
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(false);
+    }
+
+    private fun longPressed(b: Boolean) {
+        if(b) {
+            Toast.makeText(this, "long", Toast.LENGTH_SHORT).show()
+        }
     }
 }

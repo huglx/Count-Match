@@ -8,17 +8,20 @@ import java.util.*
 @Entity(tableName = "event_table")
 data class Event (
 
-   /* @ColumnInfo(name = "start_time_milli")
-    val startTimeMilli: Long = System.currentTimeMillis(),
-
-    @ColumnInfo(name = "end_time")
-    var endTimeMilli: Date,*/
+    @ColumnInfo(name = "add_time_milli")
+    val addTimeMilli: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "title")
     var title: String,
-/*
+
+    @ColumnInfo(name = "end_date")
+    var endDate: String,
+
+    @ColumnInfo(name = "end_time")
+    var endTime: String,
+
     @ColumnInfo(name = "isBought")
-    var isBought: Boolean*/
+    var isBought: Boolean,
 
     @PrimaryKey(autoGenerate = true)
     var eventId: Long = 0L

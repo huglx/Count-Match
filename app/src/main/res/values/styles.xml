@@ -49,6 +49,14 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="BodyWhiteTextStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/colorWhite</item>
@@ -68,5 +76,13 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
-
+    <style name="TextInput">
+        <!-- Customize your theme here. -->
+        <item name="boxBackgroundColor">@color/colorWhite</item>
+        <item name="boxCornerRadiusBottomEnd">5dp</item>
+        <item name="boxCornerRadiusTopStart">5dp</item>
+        <item name="boxCornerRadiusTopEnd">5dp</item>
+        <item name="boxCornerRadiusBottomStart">5dp</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+    </style>
 </resources>

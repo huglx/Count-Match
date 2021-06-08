@@ -4,11 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="event"
             type="com.countutilmatch.countmatch.database.Event" />
-
+        <variable
+            name="clickListener"
+            type="com.countutilmatch.countmatch.ui.main.EventListener" />
+        <variable
+            name="viewmodel"
+            type="com.countutilmatch.countmatch.ui.main.MainViewModel" />
     </data>
     <androidx.cardview.widget.CardView
         android:backgroundTint="@color/colorWhite"
@@ -17,6 +22,8 @@
         android:layout_margin="10dp"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:onClick="@{() -> clickListener.onClick(event)}"
+            onLongClick="@{() -> clickListener.onLongPress()}"
             android:foregroundGravity="center"
             android:layout_width="312dp"
             android:layout_height="121dp">
@@ -47,7 +54,7 @@
                 android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_bought_ticket"
+                app:iconTicket="@{event}"
                 />
 
             <TextView
@@ -55,12 +62,13 @@
                 android:layout_toEndOf="@id/imageTicket"
                 android:layout_below="@id/timer"
                 android:paddingTop="10dp"
+                android:textSize="16sp"
                 style="@style/BodyBlackTextStyle"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ticker_bought"
+                app:isBought="@{event}"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

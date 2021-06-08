@@ -3,17 +3,18 @@
     package="com.countutilmatch.countmatch">
 
     <application
-        android:name="com.countutilmatch.countmatch.Application"
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.countutilmatch.countmatch.ui.splash.PermissionActivity"></activity>
-        <activity android:name="com.countutilmatch.countmatch.ui.splash.GreetingActivity">
-        </activity>
-        <activity android:name="com.countutilmatch.countmatch.ui.main.MainActivity">
+        <activity android:name=".ui.adding.ResultActivity"></activity>
+        <activity android:name=".ui.adding.AddingActivity" />
+        <activity android:name=".ui.splash.PermissionActivity" />
+        <activity android:name=".ui.splash.GreetingActivity" />
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 

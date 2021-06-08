@@ -15,7 +15,6 @@ class GreetingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBindings()
 
-
         bindings.next.setOnClickListener {
             val sharedPref = this.getSharedPreferences(IS_GREETING_PASSED , Context.MODE_PRIVATE)
             var editor = sharedPref.edit()

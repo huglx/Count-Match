@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.adding.AddingActivity">
+    <data>
+
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/Head6TextStyle"
+            android:text="@string/add"
+            android:id="@+id/adding"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/BodyWhiteTextStyle"
+            android:text="@string/title_text"
+            android:id="@+id/titleText"
+            android:layout_below="@id/adding"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:counterEnabled="true"
+            app:counterMaxLength="27"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@id/titleText"
+            android:id="@+id/title"
+            style="@style/TextInput"
+            app:boxStrokeWidth="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/football_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textColor="@color/colorDark"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            style="@style/BodyWhiteTextStyle"
+            android:text="@string/date_text"
+            android:id="@+id/dateText"
+            android:layout_below="@id/title"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_below="@id/dateText"
+            android:id="@+id/date"
+            style="@style/TextInput"
+            app:boxStrokeWidth="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:inputType="datetime"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            style="@style/BodyWhiteTextStyle"
+            android:text="@string/date_time_text"
+            android:id="@+id/dateTimeText"
+            android:layout_below="@id/date"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_below="@id/dateTimeText"
+            android:id="@+id/dateTime"
+            style="@style/TextInput"
+            app:boxStrokeWidth="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_time_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:inputType="datetime"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/colorWhite"
+            android:minWidth="24dp"
+            android:layout_below="@id/dateTime"
+            android:id="@+id/ticketBoughtOrNot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/ticker_bought"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/add_event"
+            style="@style/ButtonStyle"
+            android:id="@+id/addEvent"
+            android:layout_marginBottom="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="312dp"
+            android:layout_height="78dp"/>
+
+    </RelativeLayout>
+</layout>

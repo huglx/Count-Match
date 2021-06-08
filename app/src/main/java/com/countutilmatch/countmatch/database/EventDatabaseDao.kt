@@ -20,6 +20,9 @@ interface EventDatabaseDao {
     @Query("DELETE FROM event_table")
     suspend fun clear()
 
+    @Query("DELETE FROM event_table WHERE eventId = :key")
+    suspend fun deleteItem(key: Long)
+
     @Query("SELECT * FROM event_table")
     fun getAllEvents(): LiveData<List<Event>>
 }
