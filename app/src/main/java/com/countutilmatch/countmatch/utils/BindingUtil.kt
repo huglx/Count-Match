@@ -47,7 +47,7 @@ fun setOnLongClickListener(
 
 
 @BindingAdapter("onLongClick")
-fun setOnLongClickListener(view: View, func : () -> Unit) {
+fun setOnLongClickListener(view: View, func : () -> Unit ) {
     view.setOnLongClickListener {
         func()
         Log.i("asfasf", "setOnLongClickListener")

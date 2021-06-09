@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.countutilmatch.countmatch.di.ViewModelKey
 import com.countutilmatch.countmatch.ui.adding.AddingViewModel
+import com.countutilmatch.countmatch.ui.edit.EditViewModel
 import com.countutilmatch.countmatch.ui.main.MainViewModel
 import com.countutilmatch.countmatch.utils.ViewModelFactory
 import dagger.Binds
@@ -27,4 +28,8 @@ abstract class ViewModelModule {
     @ViewModelKey(AddingViewModel::class)
     abstract fun bindAddingViewModel(viewModel:AddingViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditViewModel::class)
+    abstract fun bindEditViewModel(viewModel:EditViewModel): ViewModel
 }

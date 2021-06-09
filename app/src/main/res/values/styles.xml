@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/gilroy_regular</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialog</item>
         <item name="android:windowBackground">@drawable/ic_pattern</item>
     </style>
 
@@ -84,5 +85,42 @@
         <item name="boxCornerRadiusTopEnd">5dp</item>
         <item name="boxCornerRadiusBottomStart">5dp</item>
         <item name="android:textColorHint">@color/colorGray</item>
+    </style>
+
+    <style name="AlertDialogTheme" >
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorDark</item>
+    </style>
+
+    <style name="MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:background">@color/colorWhite</item>
+        <!-- Title -->
+        <item name="materialAlertDialogTitleTextStyle">@style/MyTitle_MaterialAlertDialog.MaterialComponents.Title.Text</item>
+        <!-- Body -->
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextAppearance.MaterialComponents.Body2</item>
+        <!-- Buttons -->
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+
+    <style name="PositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorCancel</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorDark</item>
+    </style>
+
+    <style name="MyTitle_MaterialAlertDialog.MaterialComponents.Title.Text" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textAppearance">@style/TitleBlackTextStyle</item>
+    </style>
+
+    <style name="BodyTextAppearance.MaterialComponents.Body2" parent="@style/TextAppearance.MaterialComponents.Body2">
+        <item name="android:textAppearance">@style/TitleBlackTextStyle</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 </resources>

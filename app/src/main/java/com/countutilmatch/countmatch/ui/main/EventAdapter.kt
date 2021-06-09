@@ -2,11 +2,17 @@ package com.countutilmatch.countmatch.ui.main
 
 import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.countutilmatch.countmatch.R
 import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.TicketItemBinding
+import com.countutilmatch.countmatch.utils.getCalendar
+import com.task.ui.base.listeners.RecyclerItemListener
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -17,7 +23,7 @@ class EventAdapter(private val events: List<Event>, val clickListener: EventList
         RecyclerView.Adapter<EventViewHolder>() {
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(events[position], clickListener)
+        holder.bind(events[position], clickListener, longCLickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -35,24 +41,10 @@ class EventAdapter(private val events: List<Event>, val clickListener: EventList
 }
 
 class EventViewHolder constructor(private val binding: TicketItemBinding)
-        : RecyclerView.ViewHolder(binding.root) {
+        : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Event, clickListener: EventListener) {
-            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy,HH-mm-ss")//"dd-MM-yyyy,HH-mm-ss"
-           // val date = item.endDate+","+item.endTime
-            val date = (item.endDate+","+item.endTime)
-            val text = date.format(formatter)
-            val parsedDate = LocalDateTime.parse(text, formatter)
-
-            val calendar = Calendar.getInstance()
-            calendar.set(Calendar.SECOND, parsedDate.second)
-            calendar.set(Calendar.HOUR_OF_DAY, parsedDate.hour)
-            calendar.set(Calendar.MONTH,parsedDate.monthValue-1)
-            calendar.set(Calendar.MINUTE,parsedDate.minute)
-            calendar.set(Calendar.DAY_OF_MONTH, parsedDate.dayOfMonth)
-            calendar.set(Calendar.YEAR, parsedDate.year)
-
-            val timer = object: CountDownTimer(calendar.timeInMillis - System.currentTimeMillis(), 1000) {
+        fun bind(item: Event, clickListener: EventListener, longCLickListener: RecyclerItemListener) {
+            val timer = object: CountDownTimer(getCalendar(item.endDate, item.endTime).timeInMillis - System.currentTimeMillis(), 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     val day = TimeUnit.MILLISECONDS.toDays(millisUntilFinished)
                     val hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished).toInt() % 24
@@ -62,18 +54,29 @@ class EventViewHolder constructor(private val binding: TicketItemBinding)
                 }
 
                 override fun onFinish() {
-
                 }
             }.start()
-
             binding.event = item
             binding.title.text = item.title
+            binding.listItem.setOnLongClickListener {
+                longCLickListener.onLongCLickSelected(binding)
+                true
+            }
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
-    }
+}
 
-class EventListener(val clickListener: (eventId: Long) -> Unit, val longClickListener: () -> Unit) {
+class EventListener(val clickListener: (eventId: Long) -> Unit, val clickDeleteListener: (eventId: Long) -> Unit) {
     fun onClick(event: Event) = clickListener(event.eventId)
-    fun onLongPress() = longClickListener()
+    fun onClickDelete(event: Event) = clickDeleteListener(event.eventId)
+}
+
+private val longCLickListener: RecyclerItemListener = object : RecyclerItemListener {
+    override fun onLongCLickSelected(binding: TicketItemBinding) {
+        if(binding.delete.isVisible) {
+            binding.delete.visibility = View.GONE
+        }else binding.delete.visibility = View.VISIBLE
+
+    }
 }

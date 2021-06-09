@@ -34,5 +34,16 @@
     <string name="added2">Ваше событие создано успешно!</string>
     <string name="add_more">Создать ещё одно событие</string>
     <string name="go_main">Перейти к списку событий</string>
-
+    <!--editing-->
+    <string name="event">Событие</string>
+    <string name="count_down">Начало через</string>
+    <string name="day">Дн.</string>
+    <string name="hours">Час.</string>
+    <string name="mins">Мин.</string>
+    <string name="secs">Сек.</string>
+    <string name="alert">Вы уверены что хотите удалить событие?</string>
+    <string name="accept">Да, удалить</string>
+    <string name="decline">Отменить</string>
+    <string name="save_and_back">Сохранить и вернуться назад</string>
+    <string name="no_save_and_back">Вернуться не сохраняя</string>
 </resources>
