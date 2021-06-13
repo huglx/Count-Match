@@ -52,6 +52,15 @@
         tools:listitem="@layout/ticket_item"
         />
 
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/delete_all_events"
+            style="@style/ButtonDeleteStyle"
+            android:visibility="gone"
+            android:id="@+id/deleteAll"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"/>
+
     </RelativeLayout>
 
 </layout>

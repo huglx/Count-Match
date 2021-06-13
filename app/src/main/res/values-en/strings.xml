@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Count Match</string>
+    <!--greeting-->
+    <string name="greetings">Welcome!</string>
+    <string name="greetings_text">With our app you can set a timer with a notification for upcoming events</string>
+    <string name="greetings_text_button">Ok, continue</string>
+    <!--permission-->
+    <string name="permission">Permissions</string>
+    <string name="permission_text">All events will automatically be added to your device widgets, permission list:</string>
+    <string name="permission1">- desktop widgets</string>
+    <string name="permission2">"- calendar "</string>
+    <string name="permission3">"- push notifications "</string>
+    <string name="permission4">- keyboard</string>
+    <string name="permission_text_button">Confirm and continue</string>
+    <!--main-->
+    <string name="ticker_bought">ticket purchased</string>
+    <string name="event_ended">Event ended</string>
+    <string name="ticker_not_bought">no ticket purchased</string>
+    <string name="delete_all_events">Delete all events</string>
+    <string name="my_actions">My events</string>
+    <string name="timer">%1$d d. %2$d h. %3$d min. %4$d sec.</string>
+    <!--adding-->
+    <string name="football_hint">Basketball</string>
+    <string name="date_hint">dd-mm-yyyy</string>
+    <string name="date_time_hint">hh-mm-ss</string>
+    <string name="add">New event</string>
+    <string name="title_text">Title:</string>
+    <string name="date_text">Date of event:</string>
+    <string name="date_time_text">Time of event:</string>
+    <string name="tickets_bought">Tickets already purchased</string>
+    <string name="add_event">Create an event</string>
+    <string name="invalid_date">Invalid date</string>
+    <string name="fill_data">Fill forms</string>
+    <string name="invalid_date_time">Invalid time</string>
+    <string name="date_inPast">date from past</string>
+    <string name="added">Ready</string>
+    <string name="added2">Your event is created successfully!</string>
+    <string name="add_more">Create another event</string>
+    <string name="go_main">Go to events list</string>
+    <!--editing-->
+    <string name="event">Event</string>
+    <string name="count_down">Starting in</string>
+    <string name="day">D.</string>
+    <string name="hours">H.</string>
+    <string name="mins">Min.</string>
+    <string name="secs">Secs.</string>
+    <string name="alert">Are you sure you want to delete the event?</string>
+    <string name="accept">Yes, remove</string>
+    <string name="decline">Cancel</string>
+    <string name="save_and_back">Save and go back</string>
+    <string name="no_save_and_back">Go back without saving</string>
+    <!--settings-->
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="ru">Russian</string>
+    <string name="en">English</string>
+    <string name="de">Deutsche</string>
+</resources>

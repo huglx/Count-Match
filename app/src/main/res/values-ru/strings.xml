@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Count Match</string>
+    <string name="app_name">Count Match</string>
     <!--greeting-->
     <string name="greetings">Добро пожаловать!</string>
     <string name="greetings_text">С нашим приложением вы можете ставить таймер с уведомлением на предстоящие события</string>
@@ -7,16 +8,16 @@
     <!--permission-->
     <string name="permission">Разрешения</string>
     <string name="permission_text">Все события автоматически будут добавлены в виджеты вашего устройства, список разрешений:</string>
-    <string name="permission1">"- виджеты рабочего стола "</string>
-    <string name="permission2">" - календарь"</string>
+    <string name="permission1">- виджеты рабочего стола </string>
+    <string name="permission2">- календарь</string>
     <string name="permission3">- пуш-уведомления</string>
     <string name="permission4">- клавиатура</string>
     <string name="permission_text_button">Подтвердить и продолжить</string>
     <!--main-->
     <string name="ticker_bought">билет куплен</string>
-    <string name="event_ended">Событие завершено</string>
     <string name="ticker_not_bought">билет не куплен</string>
     <string name="my_actions">Мои события</string>
+    <string name="event_ended">Событие завершено</string>
     <string name="timer">%1$d дн. %2$d час. %3$d мин. %4$d сек.</string>
     <!--adding-->
     <string name="football_hint">Футбольный матч</string>
@@ -26,10 +27,10 @@
     <string name="title_text">Название:</string>
     <string name="date_text">Дата события:</string>
     <string name="date_time_text">Время события:</string>
+    <string name="fill_data">заполните поля</string>
     <string name="tickets_bought">Билеты уже куплены</string>
     <string name="add_event">Создать событие</string>
     <string name="invalid_date">Неверный формат даты</string>
-    <string name="fill_data">заполните поля</string>
     <string name="invalid_date_time">Неверный формат времени</string>
     <string name="date_inPast">Введена дата из прошлого</string>
     <string name="added">Готово</string>
@@ -55,7 +56,4 @@
     <string name="ru">Русский</string>
     <string name="en">Английский</string>
     <string name="de">Немецкий</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-
 </resources>

@@ -6,6 +6,7 @@ import com.countutilmatch.countmatch.di.ViewModelKey
 import com.countutilmatch.countmatch.ui.adding.AddingViewModel
 import com.countutilmatch.countmatch.ui.edit.EditViewModel
 import com.countutilmatch.countmatch.ui.main.MainViewModel
+import com.countutilmatch.countmatch.ui.settings.SettingsViewModel
 import com.countutilmatch.countmatch.utils.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -27,6 +28,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AddingViewModel::class)
     abstract fun bindAddingViewModel(viewModel:AddingViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    abstract fun bindSettingsViewModel(viewModel:SettingsViewModel): ViewModel
 
     @Binds
     @IntoMap

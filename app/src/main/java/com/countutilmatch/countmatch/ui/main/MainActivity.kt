@@ -1,33 +1,20 @@
 package com.countutilmatch.countmatch.ui.main
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.ActivityMainBinding
 import com.countutilmatch.countmatch.databinding.TicketItemBinding
 import com.countutilmatch.countmatch.ui.adding.AddingActivity
 import com.countutilmatch.countmatch.ui.base.BaseActivity
 import com.countutilmatch.countmatch.ui.edit.EditActivity
+import com.countutilmatch.countmatch.ui.settings.SettingsActivity
 import com.countutilmatch.countmatch.ui.splash.GreetingActivity
-import com.countutilmatch.countmatch.ui.splash.PermissionActivity
-import com.countutilmatch.countmatch.utils.IS_GREETING_PASSED
-import com.countutilmatch.countmatch.utils.ViewModelFactory
-import com.countutilmatch.countmatch.utils.observe
-import com.countutilmatch.countmatch.utils.sendNotification
-import com.google.android.material.internal.ContextUtils.getActivity
+import com.countutilmatch.countmatch.utils.*
 import com.task.ui.base.listeners.RecyclerItemListener
 import javax.inject.Inject
 
@@ -39,6 +26,7 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var viewModel: MainViewModel
     private lateinit var eventAdapter: EventAdapter
+    private lateinit var audioManager: AudioManager
 
     override fun initViewModel() {
         viewModel = viewModelFactory.create(viewModel::class.java)
@@ -51,83 +39,92 @@ class MainActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observe(viewModel.event,:: handleData)
+        observe(viewModel.events,:: handleData)
     }
 
     private fun handleData(events: List<Event>) {
-        eventAdapter = EventAdapter(events, EventListener(clickListener = {
-            startActivity(Intent(this, EditActivity::class.java)
-                .putExtra("EVENT_ID", it))
-            finish()
-        },clickDeleteListener = {
-            viewModel.delete(it)
-            eventAdapter.notifyDataSetChanged()
-        })
+        val sharedPref = this.getSharedPreferences(PREF , Context.MODE_PRIVATE)
+        eventAdapter = EventAdapter(
+            events, EventListener(clickListener = {
+                if (sharedPref.getBoolean(SOUNDS, true)){
+                    audioManager.startSound()
+                }
+                startActivity(Intent(this, EditActivity::class.java)
+                    .putExtra("EVENT_ID", it))
+                finish()
+            },clickDeleteListener = {
+                if (sharedPref.getBoolean(SOUNDS, true)){
+                    audioManager.startDeleteSound()
+                }
+                viewModel.delete(it)
+                eventAdapter.notifyDataSetChanged()
+                bindings.deleteAll.visibility = View.GONE
+            }), longCLickListener
         )
-
         bindings.listItem.adapter = eventAdapter
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        bindings.lifecycleOwner = this
 
-        val sharedPref = this.getSharedPreferences(IS_GREETING_PASSED , Context.MODE_PRIVATE)
+        val sharedPref = this.getSharedPreferences(PREF , Context.MODE_PRIVATE)
         if (!sharedPref.getBoolean(IS_GREETING_PASSED, false)){
             startActivity(Intent(this, GreetingActivity::class.java))
         }
+
+        when(sharedPref.getString(LANGUAGE, "ru")){
+            "ru" -> setAppLocale(this,"ru")
+            "en" -> setAppLocale(this, "en")
+            "de" -> setAppLocale(this, "de")
+        }
+
+        super.onCreate(savedInstanceState)
+        bindings.lifecycleOwner = this
+        audioManager = AudioManager(this)
+
         bindings.floatingActionButton.setOnClickListener {
             startActivity(Intent(this, AddingActivity::class.java))
         }
+        bindings.deleteAll.setOnClickListener {
+            if (sharedPref.getBoolean(SOUNDS, true)){
+                audioManager.startDeleteSound()
+            }
+            viewModel.deleteAll()
+            eventAdapter.notifyDataSetChanged()
+            bindings.deleteAll.visibility = View.GONE
+        }
+        bindings.settings.setOnClickListener {
+            if (sharedPref.getBoolean(SOUNDS, true)){
+                audioManager.startSound()
+            }
+            startActivity(Intent(this, SettingsActivity::class.java))
+            finish()
+        }
+
         setUp()
-        viewModel.init()
-
-        createChannel(
-           "1",
-            "name"
-        )
+        viewModel.init(this)
     }
-
-    private fun createChannel(channelId: String, channelName: String) {
-        // TODO: Step 1.6 START create a channel
-            val notificationChannel = NotificationChannel(
-                channelId,
-                channelName,
-                // TODO: Step 2.4 change importance
-                NotificationManager.IMPORTANCE_HIGH
-            )// TODO: Step 2.6 disable badges for this channel
-                .apply {
-                    setShowBadge(false)
-                }
-
-            notificationChannel.enableLights(true)
-            notificationChannel.lightColor = Color.RED
-            notificationChannel.enableVibration(true)
-            notificationChannel.description = "desc"
-
-            val notificationManager = getSystemService(
-                NotificationManager::class.java
-            )
-            notificationManager.createNotificationChannel(notificationChannel)
-        // TODO: Step 1.6 END create a channel
-    }
-
     private fun setUp() {
         val manager = LinearLayoutManager(this)
         bindings.listItem.layoutManager = manager
-
-        val notificationManager = ContextCompat.getSystemService(
-            this,
-            NotificationManager::class.java
-        ) as NotificationManager
-
-        notificationManager.sendNotification(
-            "test",
-            this
-        )
     }
 
     override fun onBackPressed() {
         moveTaskToBack(false);
     }
+
+    private val longCLickListener: RecyclerItemListener = object : RecyclerItemListener {
+        override fun onLongCLickSelected(binding: TicketItemBinding) {
+            if (binding.delete.isVisible) {
+                binding.delete.visibility = View.GONE
+                bindings.deleteAll.visibility = View.GONE
+                bindings.floatingActionButton.visibility = View.VISIBLE
+            } else {
+                    binding.delete.visibility = View.VISIBLE
+                    bindings.deleteAll.visibility = View.VISIBLE
+                    bindings.floatingActionButton.visibility = View.GONE
+                }
+            }
+        }
+
 }

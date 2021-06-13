@@ -25,4 +25,8 @@ interface EventDatabaseDao {
 
     @Query("SELECT * FROM event_table")
     fun getAllEvents(): LiveData<List<Event>>
+
+    @Query("SELECT * from event_table WHERE IsEnded = 0 ORDER BY end_date AND end_time")
+    fun getSoonest(): LiveData<Event>
+
 }

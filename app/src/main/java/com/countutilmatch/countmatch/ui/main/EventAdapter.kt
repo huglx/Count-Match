@@ -2,24 +2,22 @@ package com.countutilmatch.countmatch.ui.main
 
 import android.os.CountDownTimer
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.NotificationCompat
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.countutilmatch.countmatch.R
 import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.TicketItemBinding
 import com.countutilmatch.countmatch.utils.getCalendar
 import com.task.ui.base.listeners.RecyclerItemListener
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-class EventAdapter(private val events: List<Event>, val clickListener: EventListener) :
+class EventAdapter(
+    private val events: List<Event>,
+    val clickListener: EventListener,
+    val longCLickListener: RecyclerItemListener
+) :
         RecyclerView.Adapter<EventViewHolder>() {
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
@@ -38,6 +36,7 @@ class EventAdapter(private val events: List<Event>, val clickListener: EventList
     override fun getItemCount(): Int {
        return events.size
     }
+
 }
 
 class EventViewHolder constructor(private val binding: TicketItemBinding)
@@ -54,8 +53,10 @@ class EventViewHolder constructor(private val binding: TicketItemBinding)
                 }
 
                 override fun onFinish() {
+                    binding.timer.text = itemView.context.resources.getString(R.string.event_ended)
                 }
             }.start()
+
             binding.event = item
             binding.title.text = item.title
             binding.listItem.setOnLongClickListener {
@@ -70,13 +71,4 @@ class EventViewHolder constructor(private val binding: TicketItemBinding)
 class EventListener(val clickListener: (eventId: Long) -> Unit, val clickDeleteListener: (eventId: Long) -> Unit) {
     fun onClick(event: Event) = clickListener(event.eventId)
     fun onClickDelete(event: Event) = clickDeleteListener(event.eventId)
-}
-
-private val longCLickListener: RecyclerItemListener = object : RecyclerItemListener {
-    override fun onLongCLickSelected(binding: TicketItemBinding) {
-        if(binding.delete.isVisible) {
-            binding.delete.visibility = View.GONE
-        }else binding.delete.visibility = View.VISIBLE
-
-    }
 }

@@ -24,5 +24,7 @@ class EditViewModel@Inject constructor(val dataBase: EventDataBase): BaseViewMod
         viewModelScope.launch {
             dataBase.eventDatabaseDao.deleteItem(it)
         }
+
+
     }
 }

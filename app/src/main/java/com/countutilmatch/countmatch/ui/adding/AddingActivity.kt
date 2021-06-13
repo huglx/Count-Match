@@ -1,5 +1,6 @@
 package com.countutilmatch.countmatch.ui.adding
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +10,7 @@ import com.countutilmatch.countmatch.database.Event
 import com.countutilmatch.countmatch.databinding.ActivityAddingBinding
 import com.countutilmatch.countmatch.ui.base.BaseActivity
 import com.countutilmatch.countmatch.ui.main.MainActivity
-import com.countutilmatch.countmatch.utils.ViewModelFactory
-import com.countutilmatch.countmatch.utils.observe
+import com.countutilmatch.countmatch.utils.*
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -25,6 +25,7 @@ class AddingActivity : BaseActivity() {
     lateinit var viewModel: AddingViewModel
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var audioManager: AudioManager
 
     override fun initViewModel() {
         viewModel = viewModelFactory.create(viewModel::class.java)
@@ -42,6 +43,9 @@ class AddingActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPref = this.getSharedPreferences(PREF , Context.MODE_PRIVATE)
+        audioManager = AudioManager(this)
+
         bindings.addEvent.setOnClickListener {
             if (checkData()) {
                 viewModel.insert(
@@ -50,6 +54,9 @@ class AddingActivity : BaseActivity() {
                     bindings.dateTime.editText?.text.toString().trim(),
                     bindings.ticketBoughtOrNot.isChecked
                 )
+                if (sharedPref.getBoolean(SOUNDS, true)){
+                    audioManager.startSound()
+                }
                 startActivity(Intent(this, ResultActivity::class.java))
             }
         }
@@ -58,9 +65,10 @@ class AddingActivity : BaseActivity() {
     private fun checkData(): Boolean{
        /* var formatterTime = DateTimeFormatter.ofPattern("HH-mm-ss")
         var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")*/
-
-        if (bindings.title.editText?.text.toString().trim().isEmpty() || bindings.date.editText?.text.toString().trim().isEmpty() || bindings.dateTime.editText?.text.toString().trim().isEmpty()){
-            Toast.makeText(this, "Заполните поля", Toast.LENGTH_SHORT).show()
+        if (bindings.title.editText?.text.toString().trim().isEmpty() || bindings.date.editText?.text.toString().trim().isEmpty()
+            || bindings.dateTime.editText?.text.toString().trim().isEmpty()
+            || bindings.title.editText?.text.toString().length > 27){
+            Toast.makeText(this, getString(R.string.fill_data), Toast.LENGTH_SHORT).show()
             return false
         }else if( !(isValidDate(bindings.date.editText?.text.toString().trim(),"dd-MM-yyyy")) ){
             Toast.makeText(this, getString(R.string.invalid_date), Toast.LENGTH_SHORT).show()

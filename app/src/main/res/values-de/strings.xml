@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--greeting-->
+    <string name="greetings">Herzlich willkommen!</string>
+    <string name="greetings_text">Mit unserer App können Sie einen Timer mit einer Benachrichtigung für bevorstehende Ereignisse einstellen</string>
+    <string name="greetings_text_button">Ok, weiter</string>
+    <!--permission-->
+    <string name="permission">Berechtigungen</string>
+    <string name="permission_text">Alle Ereignisse werden automatisch zu den Widgets Ihres Geräts und der Berechtigungsliste hinzugefügt::</string>
+    <string name="permission1">- Desktop-Widgets</string>
+    <string name="permission2">- Kalender</string>
+    <string name="permission3">- Push-Benachrichtigungen</string>
+    <string name="permission4">- Tastatur</string>
+    <string name="permission_text_button">Bestätigen und fortfahren</string>
+    <!--main-->
+    <string name="ticker_bought">gekauftes ticket</string>
+    <string name="ticker_not_bought">kein ticket gekauft</string>
+    <string name="my_actions">Meine ereignisse</string>
+    <string name="event_ended">Event ended</string>
+    <string name="timer">%1$d t. %2$d st. %3$d min. %4$d sek.</string>
+    <!--adding-->
+    <string name="football_hint">Fußballspiel</string>
+    <string name="date_hint">tt-mm-jjjj</string>
+    <string name="date_time_hint">st-mm-ss</string>
+    <string name="add">Neues ereignis</string>
+    <string name="title_text">Titel:</string>
+    <string name="date_text">Datum der Veranstaltung:</string>
+    <string name="date_time_text">Zeit der Veranstaltung:</string>
+    <string name="fill_data">Fill forms</string>
+    <string name="tickets_bought">Bereits gekaufte Tickets</string>
+    <string name="add_event">Ein Ereignis erstellen</string>
+    <string name="invalid_date">Invalid date</string>
+    <string name="invalid_date_time">Invalid time</string>
+    <string name="date_inPast">date from past</string>
+    <string name="added">Erledigt!</string>
+    <string name="added2">Ihre Veranstaltung ist erfolgreich erstellt!</string>
+    <string name="add_more">Ein weiteres Ereignis erstellen</string>
+    <string name="go_main">Zur Ereignisliste gehen</string>
+    <!--editing-->
+    <string name="event">Veranstaltung</string>
+    <string name="count_down">Beginnend in</string>
+    <string name="day">T.</string>
+    <string name="hours">St.</string>
+    <string name="mins">Min.</string>
+    <string name="secs">Sek.</string>
+    <string name="alert">Sind Sie sicher, dass Sie das Ereignis löschen möchten?</string>
+    <string name="accept">Ja, entfernen</string>
+    <string name="decline">Abbrechen</string>
+    <string name="save_and_back">Speichern und zurückgehen</string>
+    <string name="no_save_and_back">Zurückgehen ohne zu speichern</string>
+    <string name="delete_all_events">Delete all events</string>
+    <!--settings-->
+    <string name="settings">Einstellungen</string>
+    <string name="language">Sprache</string>
+    <string name="ru">Русский</string>
+    <string name="en">English</string>
+    <string name="de">Deutsche</string>
+</resources>

@@ -23,6 +23,9 @@ data class Event (
     @ColumnInfo(name = "isBought")
     var isBought: Boolean,
 
+    @ColumnInfo(name = "IsEnded")
+    var IsEnded: Boolean = false,
+
     @PrimaryKey(autoGenerate = true)
     var eventId: Long = 0L
     )
