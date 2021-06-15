@@ -50,8 +50,8 @@ class AddingActivity : BaseActivity() {
             if (checkData()) {
                 viewModel.insert(
                     bindings.title.editText?.text.toString().trim(),
-                    bindings.date.editText?.text.toString().trim(),
-                    bindings.dateTime.editText?.text.toString().trim(),
+                    bindings.date.editText?.text.toString().trim().replace(" ", "-"),
+                    bindings.dateTime.editText?.text.toString().trim().replace(" ", "-"),
                     bindings.ticketBoughtOrNot.isChecked
                 )
                 if (sharedPref.getBoolean(SOUNDS, true)){
@@ -84,11 +84,12 @@ class AddingActivity : BaseActivity() {
     }
 
     private fun isValidDate(str:String, format:String):Boolean{
+        val Mstr = str.replace(" ", "-")
         var date: Date? = null
         try {
             val sdf = SimpleDateFormat(format)
-            date = sdf.parse(str)
-            if (str.equals(sdf.format(date))) {
+            date = sdf.parse(Mstr)
+            if (Mstr.equals(sdf.format(date))) {
                 date = null
                 return true
             }else{
@@ -101,10 +102,12 @@ class AddingActivity : BaseActivity() {
     }
 
      private fun isDateInFuture(date:String, dateTime:String):Boolean{
+         val Mdate = date.replace(" ", "-")
+         val Mtime = dateTime.replace(" ", "-")
 
          val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy,HH-mm-ss")//"dd-MM-yyyy,HH-mm-ss"
          // val date = item.endDate+","+item.endTime
-         val date = (date+","+dateTime)
+         val date = (Mdate+","+Mtime)
          val text = date.format(formatter)
          val parsedDate = LocalDateTime.parse(text, formatter)
 

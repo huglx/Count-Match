@@ -18,8 +18,6 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(val dataBase: EventDataBase): BaseViewModel() {
     val events = dataBase.eventDatabaseDao.getAllEvents()
     private val eventMutable = MutableLiveData<List<Event>>()
-   // val mEvent = Event("TEST123")
-
     fun init(context: Context) {
 
     }

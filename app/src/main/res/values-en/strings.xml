@@ -48,7 +48,7 @@
     <string name="alert">Are you sure you want to delete the event?</string>
     <string name="accept">Yes, remove</string>
     <string name="decline">Cancel</string>
-    <string name="save_and_back">Save and go back</string>
+    <string name="save_and_back">Go back</string>
     <string name="no_save_and_back">Go back without saving</string>
     <!--settings-->
     <string name="settings">Settings</string>
@@ -56,4 +56,8 @@
     <string name="ru">Russian</string>
     <string name="en">English</string>
     <string name="de">Deutsche</string>
+    <string name="sounds">Sounds</string>
+    <string name="back">Назад</string>
+    <string name="delete_all">Delete all event cards</string>
+
 </resources>

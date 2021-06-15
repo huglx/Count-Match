@@ -78,7 +78,15 @@ class EditActivity : BaseActivity() {
                 }
 
                 override fun onFinish() {
-
+                    bindings.countdown.text = getString(R.string.event_ended)
+                    bindings.day.visibility = View.GONE
+                    bindings.hours.visibility = View.GONE
+                    bindings.minutes.visibility = View.GONE
+                    bindings.secs.visibility = View.GONE
+                    bindings.dayText.visibility = View.GONE
+                    bindings.hoursText.visibility = View.GONE
+                    bindings.minutesText.visibility = View.GONE
+                    bindings.secsText.visibility = View.GONE
                 }
             }.start()
         }
@@ -111,14 +119,6 @@ class EditActivity : BaseActivity() {
 
         bindings.save.setOnClickListener {
             if (sharedPref.getBoolean(SOUNDS, true)){
-                audioManager.startSound()
-            }
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-
-        bindings.goMain.setOnClickListener {
-            if (sharedPref.getBoolean(LANGUAGE, true)){
                 audioManager.startSound()
             }
             startActivity(Intent(this, MainActivity::class.java))

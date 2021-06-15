@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:background="@color/colorWhite"
+    android:id="@+id/list_item"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="121dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/titleWidget"
+        style="@style/TitleBlackTextStyle"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        />
+
+    <TextView
+        android:id="@+id/timerWidget"
+        android:layout_below="@id/titleWidget"
+        style="@style/BodyBlackTextStyle"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 дн 23 час 23 мин 5 сек"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_bought_ticket"
+        android:id="@+id/imageTicketWidget"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:text="@string/ticker_bought"
+        android:id="@+id/ticketBoughtOrNotWidget"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        style="@style/BodyBlackTextStyle"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+</LinearLayout>

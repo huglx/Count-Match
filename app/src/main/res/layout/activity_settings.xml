@@ -7,13 +7,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/back"
+            android:textColor="@color/colorAccent"
+            app:strokeWidth="0dp"
+            app:icon="@drawable/ic_back_btn"
+            app:iconTint="@color/colorCancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/goMain"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <TextView
             style="@style/Head6TextStyle"
             android:text="@string/settings"
             android:id="@+id/settings"
+            android:layout_below="@id/goMain"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -55,13 +69,27 @@
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:layout_below="@id/radioGroup"
+            android:textAppearance="@style/Title2TextStyle"
             android:layout_width="match_parent"
             android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:id="@+id/sound"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="sounds"/>
+            android:text="@string/sounds"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:text="@string/delete_all"
+            android:textColor="@color/colorCancel"
+            android:textAppearance="@style/TitleTextStyle"
+            app:strokeWidth="0dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/deleteAll"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="78dp"/>
 
     </RelativeLayout>
 

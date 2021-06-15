@@ -10,6 +10,7 @@ import com.countutilmatch.countmatch.ui.main.MainActivity
 import com.countutilmatch.countmatch.utils.AudioManager
 import com.countutilmatch.countmatch.utils.LANGUAGE
 import com.countutilmatch.countmatch.utils.PREF
+import com.countutilmatch.countmatch.utils.SOUNDS
 
 class ResultActivity : AppCompatActivity() {
     lateinit var bindings: ActivityResultBinding
@@ -22,11 +23,11 @@ class ResultActivity : AppCompatActivity() {
         audioManager = AudioManager(this)
 
         bindings.addMore.setOnClickListener {
-            if (sharedPref.getBoolean(LANGUAGE, true)) audioManager.startSound()
+            if (sharedPref.getBoolean(SOUNDS, true)) audioManager.startSound()
             startActivity(Intent(this, AddingActivity::class.java))
         }
         bindings.goMain.setOnClickListener {
-            if (sharedPref.getBoolean(LANGUAGE, true)) audioManager.startSound()
+            if (sharedPref.getBoolean(SOUNDS, true)) audioManager.startSound()
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

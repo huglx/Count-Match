@@ -167,15 +167,5 @@
             android:layout_width="312dp"
             android:layout_height="78dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:text="@string/no_save_and_back"
-            android:textColor="@color/colorGray"
-            app:strokeWidth="0dp"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:id="@+id/goMain"
-            android:layout_below="@id/save"
-            android:layout_centerHorizontal="true"
-            android:layout_width="312dp"
-            android:layout_height="78dp"/>
     </RelativeLayout>
 </layout>

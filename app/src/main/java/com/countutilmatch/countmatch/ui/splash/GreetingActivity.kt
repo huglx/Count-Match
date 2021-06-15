@@ -14,7 +14,6 @@ class GreetingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPref = this.getSharedPreferences(PREF , Context.MODE_PRIVATE)
         audioManager = AudioManager(this)
 
         initBindings()

@@ -46,7 +46,7 @@
     <string name="alert">Sind Sie sicher, dass Sie das Ereignis löschen möchten?</string>
     <string name="accept">Ja, entfernen</string>
     <string name="decline">Abbrechen</string>
-    <string name="save_and_back">Speichern und zurückgehen</string>
+    <string name="save_and_back">Zurückgehen</string>
     <string name="no_save_and_back">Zurückgehen ohne zu speichern</string>
     <string name="delete_all_events">Delete all events</string>
     <!--settings-->
@@ -55,4 +55,7 @@
     <string name="ru">Русский</string>
     <string name="en">English</string>
     <string name="de">Deutsche</string>
+    <string name="sounds">Ton</string>
+    <string name="back">Назад</string>
+    <string name="delete_all">Alle ereigniskarten löschen</string>
 </resources>

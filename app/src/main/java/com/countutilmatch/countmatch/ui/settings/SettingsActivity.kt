@@ -21,6 +21,8 @@ class SettingsActivity : BaseActivity() {
     @Inject
     lateinit var viewModel: SettingsViewModel
     lateinit var bindings: ActivitySettingsBinding
+    private lateinit var audioManager: AudioManager
+
 
     override fun initViewModel() {
         viewModelFactory.create(viewModel::class.java)
@@ -42,7 +44,7 @@ class SettingsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val sharedPref = this.getSharedPreferences(PREF , Context.MODE_PRIVATE)
-
+        audioManager = AudioManager(this)
         bindings.sound.isChecked = sharedPref.getBoolean(SOUNDS, true)
 
         when(sharedPref.getString(LANGUAGE, "ru")){
@@ -62,6 +64,17 @@ class SettingsActivity : BaseActivity() {
         bindings.sound.setOnCheckedChangeListener{ buttonView, isChecked ->
             if(isChecked) sharedPref.edit().putBoolean(SOUNDS, true).apply()
             else sharedPref.edit().putBoolean(SOUNDS, false).apply()
+        }
+
+        bindings.goMain.setOnClickListener {
+            if (sharedPref.getBoolean(SOUNDS, true)){
+                audioManager.startSound()
+            }
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        bindings.deleteAll.setOnClickListener {
+            viewModel.deleteAll()
         }
     }
 

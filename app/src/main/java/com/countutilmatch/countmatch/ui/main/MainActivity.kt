@@ -58,6 +58,7 @@ class MainActivity : BaseActivity() {
                 }
                 viewModel.delete(it)
                 eventAdapter.notifyDataSetChanged()
+                bindings.floatingActionButton.visibility = View.VISIBLE
                 bindings.deleteAll.visibility = View.GONE
             }), longCLickListener
         )
@@ -83,6 +84,9 @@ class MainActivity : BaseActivity() {
         audioManager = AudioManager(this)
 
         bindings.floatingActionButton.setOnClickListener {
+            if (sharedPref.getBoolean(SOUNDS, true)){
+                audioManager.startSound()
+            }
             startActivity(Intent(this, AddingActivity::class.java))
         }
         bindings.deleteAll.setOnClickListener {
@@ -92,6 +96,7 @@ class MainActivity : BaseActivity() {
             viewModel.deleteAll()
             eventAdapter.notifyDataSetChanged()
             bindings.deleteAll.visibility = View.GONE
+            bindings.floatingActionButton.visibility = View.VISIBLE
         }
         bindings.settings.setOnClickListener {
             if (sharedPref.getBoolean(SOUNDS, true)){

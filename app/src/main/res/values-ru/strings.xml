@@ -47,7 +47,7 @@
     <string name="alert">Вы уверены что хотите удалить событие?</string>
     <string name="accept">Да, удалить</string>
     <string name="decline">Отменить</string>
-    <string name="save_and_back">Сохранить и вернуться назад</string>
+    <string name="save_and_back">Вернуться назад</string>
     <string name="no_save_and_back">Вернуться не сохраняя</string>
     <string name="delete_all_events">Удалить все события</string>
     <!--settings-->
@@ -56,4 +56,8 @@
     <string name="ru">Русский</string>
     <string name="en">Английский</string>
     <string name="de">Немецкий</string>
+    <string name="sounds">Звуки</string>
+    <string name="back">Назад</string>
+    <string name="delete_all">Удалить все карточки события</string>
+
 </resources>
